@@ -4,10 +4,10 @@ List Of Features:
   ☐ Alternative Drivers which are not the owner of the Vehicle
   ☐ Track Service History
   ☐ Customer an alt driver are able to book for service
-  ☐ 10 available service slot to book each day
-  ☐ 10 technician to assign to each vehicle, able to service one vehicle per day
+  ☐ each branch has 10 available service slot to book each day
+  ☐ each branch has 10 technician to assign to each vehicle, able to service one vehicle per day
   ☐ SUVs require two technicians
-  ☐ technicians should receive their daily plan each day at 7am 
+  ☐ technicians should receive their daily plan each day at 7am
   ☐ include vehicle and customer, and booked slot information in technician daily plan
   ☐ inform customer when technician is start servicing
   ☐ inform customer when service is finished
