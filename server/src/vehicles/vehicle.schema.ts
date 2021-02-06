@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Schema as mongooseSchema } from 'mongoose';
-import { User } from 'src/users/Schema/user.schema';
-import { VehicleType } from 'src/vehicle-types/vehicle-type.schema';
+import { User } from '../users/user.schema';
+import { VehicleType } from '../vehicle-types/vehicle-type.schema';
 
 export type VehicleDocument = Vehicle & Document;
 
