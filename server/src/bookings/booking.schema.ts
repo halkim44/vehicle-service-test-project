@@ -21,7 +21,7 @@ export class Booking {
       ref: 'User',
     },
   ])
-  technicians: User[];
+  technicians_assigned: User[];
 
   @Prop()
   service_started: Date;
@@ -29,7 +29,7 @@ export class Booking {
   @Prop()
   service_ended: Date;
 
-  @Prop()
+  @Prop({ type: Date, default: Date.now })
   date: Date;
 
   @Prop({

@@ -13,7 +13,7 @@ export class Branch {
     required: true,
     type: [{ type: Number, min: 1, max: 7 }],
     validate: [
-      arrayLimit,
+      weekdayLimit,
       '{PATH} exceeds the limit of number of days in a week',
     ],
   })
@@ -30,7 +30,8 @@ export class Branch {
   technicians: User[];
 }
 
-function arrayLimit(val: number[]): boolean {
+function weekdayLimit(val: number[]): boolean {
   return val.length <= 7;
 }
+
 export const BranchSchema = SchemaFactory.createForClass(Branch);

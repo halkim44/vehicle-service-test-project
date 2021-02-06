@@ -9,6 +9,7 @@ import { BookingsController } from './bookings/bookings.controller';
 import { BookingsService } from './bookings/bookings.service';
 import { BookingsModule } from './bookings/bookings.module';
 import { ConfigModule } from '@nestjs/config';
+import { VehicleTypesModule } from './vehicle-types/vehicle-types.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { ConfigModule } from '@nestjs/config';
     VehiclesModule,
     BranchesModule,
     BookingsModule,
+    VehicleTypesModule,
   ],
   controllers: [AppController, BookingsController],
   providers: [AppService, BookingsService],
