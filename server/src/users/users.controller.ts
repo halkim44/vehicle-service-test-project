@@ -10,7 +10,10 @@ import {
   NotFoundException,
   Delete,
   Param,
+  UseGuards,
 } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { LocalAuthGuard } from 'src/auth/local-auth.guard';
 import { CreateUserDTO } from './create-user.dto';
 import { UsersService } from './users.service';
 
@@ -29,6 +32,7 @@ export class UsersController {
   }
 
   // Fetch a particular user using ID
+  @UseGuards(JwtAuthGuard)
   @Get('/:userID')
   async getUser(@Res() res, @Param('userID') userID) {
     const user = await this.userService.getUser(userID);

@@ -10,7 +10,15 @@ export class UsersService {
 
   // Get a single user
   async getUser(userID): Promise<User> {
-    const user = await this.userModel.findById(userID).exec();
+    const user = await this.userModel
+      .findById(userID)
+      .select('-password')
+      .exec();
+    return user;
+  }
+  // find User using username
+  async findUser(username: string): Promise<User> {
+    const user = await this.userModel.findOne({ name: username }).exec();
     return user;
   }
   // post a single user

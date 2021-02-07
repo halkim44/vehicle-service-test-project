@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UsersService } from '../users.service';
+import { UsersService } from './users.service';
 
 describe('UsersService', () => {
   let service: UsersService;
@@ -11,6 +11,7 @@ describe('UsersService', () => {
 
     service = module.get<UsersService>(UsersService);
   });
+  console.log(service);
 
   it('should be defined', () => {
     expect(service).toBeDefined();
