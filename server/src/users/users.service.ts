@@ -22,7 +22,7 @@ export class UsersService {
     return user;
   }
   // post a single user
-  async addUser(createUserDTO: CreateUserDTO): Promise<User> {
+  async create(createUserDTO: CreateUserDTO): Promise<User> {
     const newUser = await new this.userModel(createUserDTO);
     return newUser.save();
   }

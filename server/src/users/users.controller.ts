@@ -21,15 +21,15 @@ import { UsersService } from './users.service';
 export class UsersController {
   constructor(private userService: UsersService) {}
 
-  // add a user
-  @Post('/create')
-  async addUser(@Res() res, @Body() createUserDTO: CreateUserDTO) {
-    const user = await this.userService.addUser(createUserDTO);
-    return res.status(HttpStatus.OK).json({
-      message: 'User has been created successfully',
-      user,
-    });
-  }
+  // // add a user
+  // @Post('/create')
+  // async addUser(@Res() res, @Body() createUserDTO: CreateUserDTO) {
+  //   const user = await this.userService.addUser(createUserDTO);
+  //   return res.status(HttpStatus.OK).json({
+  //     message: 'User has been created successfully',
+  //     user,
+  //   });
+  // }
 
   // Fetch a particular user using ID
   @UseGuards(JwtAuthGuard)
