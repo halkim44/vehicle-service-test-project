@@ -19,7 +19,8 @@ export class AuthService {
 
     if (!match) return null;
 
-    const { password, ...result } = user['_doc']; // separate password from
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...result } = user['_doc'];
     return result;
   }
 
@@ -29,27 +30,23 @@ export class AuthService {
       access_token: this.jwtService.sign(payload),
     };
   }
+
   async create(user: any) {
-    // hash the password
-    console.log(user);
+    const existingUser = await this.usersService.findUser(user.name);
 
+    console.log(existingUser);
+
+    if (existingUser) {
+      return null;
+    }
     const pass = await this.hashPassword(user.password);
-
-    // create the user
     const newUser = await this.usersService.create({ ...user, password: pass });
-
-    console.log(newUser);
-
-    // tslint:disable-next-line: no-string-literal
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password, ...result } = newUser['_doc'];
-
-    // generate token
     const token = this.jwtService.sign({
       username: user.name,
       sub: user._id,
     });
-
-    // return the user and the token
     return { user: result, token };
   }
 
