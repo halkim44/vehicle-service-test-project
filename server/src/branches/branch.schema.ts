@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Schema as mongooseSchema } from 'mongoose';
-import { User } from 'src/users/user.schema';
+import { User } from '../users/user.schema';
 
 export type BranchDocument = Branch & Document;
 

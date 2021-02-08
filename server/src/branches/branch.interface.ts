@@ -1,5 +1,5 @@
 import { Document } from 'mongoose';
-import { User } from 'src/users/user.schema';
+import { User } from '../users/user.schema';
 
 export interface Branch extends Document {
   name: string;

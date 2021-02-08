@@ -34,8 +34,6 @@ export class AuthService {
   async create(user: any) {
     const existingUser = await this.usersService.findUser(user.name);
 
-    console.log(existingUser);
-
     if (existingUser) {
       return null;
     }

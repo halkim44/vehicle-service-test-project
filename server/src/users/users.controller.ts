@@ -1,9 +1,6 @@
 import {
   Controller,
   Get,
-  Res,
-  HttpStatus,
-  Post,
   Body,
   Put,
   Query,
@@ -12,8 +9,7 @@ import {
   Param,
   UseGuards,
 } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { LocalAuthGuard } from 'src/auth/local-auth.guard';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { CreateUserDTO } from './create-user.dto';
 import { UsersService } from './users.service';
 
@@ -24,34 +20,35 @@ export class UsersController {
   // Fetch a particular user using ID
   @UseGuards(JwtAuthGuard)
   @Get('/:userID')
-  async getUser(@Res() res, @Param('userID') userID) {
+  async getUser(@Param('userID') userID: string): Promise<any> {
     const user = await this.userService.getUser(userID);
     if (!user) throw new NotFoundException('User does not exist!');
-    return res.status(HttpStatus.OK).json(user);
+    return user;
   }
   // Update a user's details
+  @UseGuards(JwtAuthGuard)
   @Put('/update')
   async updateUser(
-    @Res() res,
     @Query('userID') userID,
     @Body() createUserDTO: CreateUserDTO,
   ) {
     const user = await this.userService.updateUser(userID, createUserDTO);
     if (!user) throw new NotFoundException('User does not exist!');
-    return res.status(HttpStatus.OK).json({
+    return {
       message: 'User has been successfully updated',
       user,
-    });
+    };
   }
 
   // Delete a user
+  @UseGuards(JwtAuthGuard)
   @Delete('/delete')
-  async deleteUser(@Res() res, @Query('userID') userID) {
+  async deleteUser(@Query('userID') userID: string) {
     const user = await this.userService.deleteUser(userID);
     if (!user) throw new NotFoundException('User does not exist');
-    return res.status(HttpStatus.OK).json({
+    return {
       message: 'User has been deleted',
       user,
-    });
+    };
   }
 }

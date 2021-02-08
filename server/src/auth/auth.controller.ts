@@ -1,13 +1,12 @@
 import {
   Body,
   Controller,
-  HttpStatus,
   Post,
   Request,
-  Res,
   UseGuards,
+  ConflictException,
 } from '@nestjs/common';
-import { CreateUserDTO } from 'src/users/create-user.dto';
+import { CreateUserDTO } from '../users/create-user.dto';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './local-auth.guard';
 @Controller('auth')
@@ -21,16 +20,14 @@ export class AuthController {
   }
 
   @Post('signup')
-  async signup(@Res() res, @Body() user: CreateUserDTO) {
+  async signup(@Body() user: CreateUserDTO) {
     const newUser = await this.authService.create(user);
     if (!newUser) {
-      return res.status(HttpStatus.CONFLICT).json({
-        message: 'Username already exist',
-      });
+      throw new ConflictException('Username already exist');
     }
-    return res.status(HttpStatus.OK).json({
+    return {
       message: 'User has been created successfully',
       newUser,
-    });
+    };
   }
 }

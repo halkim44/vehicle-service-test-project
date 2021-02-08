@@ -1,8 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Schema as mongooseSchema } from 'mongoose';
-import { Branch } from 'src/branches/branch.schema';
-import { User } from 'src/users/user.schema';
-import { Vehicle } from 'src/vehicles/vehicle.schema';
+import { Branch } from '../branches/branch.schema';
+import { User } from '../users/user.schema';
+import { Vehicle } from '../vehicles/vehicle.schema';
 
 export type BookingDocument = Booking & Document;
 
