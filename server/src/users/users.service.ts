@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CreateUserDTO } from './create-user.dto';
+import { CreateUserDTO } from './dto/create-user.dto';
+import { UpdateUserDTO } from './dto/update-user.dto';
 import { User } from './user.interface';
 
 @Injectable()
@@ -9,7 +10,7 @@ export class UsersService {
   constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
 
   // Get a single user
-  async getUser(userID): Promise<User> {
+  async getUser(userID: string): Promise<User> {
     const user = await this.userModel
       .findById(userID)
       .select('-password')
@@ -23,21 +24,24 @@ export class UsersService {
   }
   // post a single user
   async create(createUserDTO: CreateUserDTO): Promise<User> {
-    const newUser = await new this.userModel(createUserDTO);
-    return newUser.save();
+    const newUser = await this.userModel.create(createUserDTO);
+    return newUser;
   }
   // Edit user details
-  async updateUser(userID, createUserDTO: CreateUserDTO): Promise<User> {
-    const updatedUser = await this.userModel.findByIdAndUpdate(
-      userID,
-      createUserDTO,
-      { new: true },
-    );
+  async updateUser(
+    userID: string,
+    createUserDTO: UpdateUserDTO,
+  ): Promise<User> {
+    const updatedUser = await this.userModel
+      .findByIdAndUpdate(userID, createUserDTO, { new: true })
+      .exec();
     return updatedUser;
   }
   // Delete a user
   async deleteUser(userID): Promise<any> {
-    const deletedUser = await this.userModel.findByIdAndRemove(userID);
+    const deletedUser = await this.userModel.findByIdAndRemove(userID).exec();
+
+    if (!deletedUser) return null;
     return deletedUser;
   }
 }

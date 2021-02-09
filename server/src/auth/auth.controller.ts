@@ -6,7 +6,7 @@ import {
   UseGuards,
   ConflictException,
 } from '@nestjs/common';
-import { CreateUserDTO } from '../users/create-user.dto';
+import { CreateUserDTO } from '../users/dto/create-user.dto';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './local-auth.guard';
 @Controller('auth')

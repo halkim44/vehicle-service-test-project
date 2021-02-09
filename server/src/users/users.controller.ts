@@ -10,7 +10,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { CreateUserDTO } from './create-user.dto';
+import { UpdateUserDTO } from './dto/update-user.dto';
 import { UsersService } from './users.service';
 
 @Controller('user')
@@ -18,21 +18,21 @@ export class UsersController {
   constructor(private userService: UsersService) {}
 
   // Fetch a particular user using ID
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Get('/:userID')
   async getUser(@Param('userID') userID: string): Promise<any> {
     const user = await this.userService.getUser(userID);
     if (!user) throw new NotFoundException('User does not exist!');
-    return user;
+    return { user };
   }
   // Update a user's details
   @UseGuards(JwtAuthGuard)
   @Put('/update')
   async updateUser(
-    @Query('userID') userID,
-    @Body() createUserDTO: CreateUserDTO,
+    @Query('userID') userID: string,
+    @Body() updateUserDTO: UpdateUserDTO,
   ) {
-    const user = await this.userService.updateUser(userID, createUserDTO);
+    const user = await this.userService.updateUser(userID, updateUserDTO);
     if (!user) throw new NotFoundException('User does not exist!');
     return {
       message: 'User has been successfully updated',
@@ -48,7 +48,7 @@ export class UsersController {
     if (!user) throw new NotFoundException('User does not exist');
     return {
       message: 'User has been deleted',
-      user,
+      deleted: true,
     };
   }
 }
