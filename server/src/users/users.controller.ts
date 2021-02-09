@@ -18,7 +18,7 @@ export class UsersController {
   constructor(private userService: UsersService) {}
 
   // Fetch a particular user using ID
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get('/:userID')
   async getUser(@Param('userID') userID: string): Promise<any> {
     const user = await this.userService.getUser(userID);
