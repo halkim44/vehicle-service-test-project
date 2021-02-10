@@ -1,15 +1,18 @@
 
 List Of Features:
-  ☐ customer are able to register vehicle by plate number
-  ☐ Alternative Drivers which are not the owner of the Vehicle
+  ✔ customer are able to register vehicle by plate number @done(21-02-11 00:16)
+  ✔ Alternative Drivers which are not the owner of the Vehicle @done(21-02-11 00:16)
   ☐ Track Service History
   ☐ Customer an alt driver are able to book for service
-  ☐ each branch has 10 available service slot to book each day
-  ☐ each branch has 10 technician to assign to each vehicle, able to service one vehicle per day
-  ☐ SUVs require two technicians
+  ☐ each vehicle are able to book once in a day
+  ☐ cannot book on the current day
+  ✔ each branch has 10 available service slot to book each day @done(21-02-10 23:48)
+  ✔ each branch has 10 technician to assign to each vehicle, able to service one vehicle per day @done(21-02-10 23:48)
+  ✔ SUVs require two technicians @done(21-02-10 23:47)
   ☐ technicians should receive their daily plan each day at 7am
   ☐ include vehicle and customer, and booked slot information in technician daily plan
-  ☐ inform customer when technician is start servicing
-  ☐ inform customer when service is finished
-  ☐ vehicle is ready to drive
-  ☐ authentication in jwt
+  ✔ inform customer when technician is start servicing @done(21-02-10 23:47)
+  ✔ inform customer when service is finished @done(21-02-10 23:47)
+  ✔ vehicle is ready to drive @done(21-02-10 23:47)
+  ✔ authentication in jwt @done(21-02-10 23:46)
+

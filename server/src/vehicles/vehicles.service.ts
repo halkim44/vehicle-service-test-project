@@ -44,4 +44,3 @@ export class VehiclesService {
     return updatedVehicle;
   }
 }
-console.log(UpdateVehicleDTO);

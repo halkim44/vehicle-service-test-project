@@ -56,7 +56,7 @@ export class BookingsController {
     };
   }
 
-  // add a booking
+  // create booking
   @UseGuards(JwtAuthGuard)
   @Post('/create')
   async addBooking(@Body() createBookingDTO: CreateBookingDTO) {
