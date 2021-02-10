@@ -21,7 +21,7 @@ export class VehicleTypesController {
 
   // Fetch a particular vehicleType using ID
   @UseGuards(JwtAuthGuard)
-  @Get('/:vehicleTypeID')
+  @Get('detail/:vehicleTypeID')
   async getVehicleType(
     @Param('vehicleTypeID') vehicleTypeID: string,
   ): Promise<any> {
@@ -32,7 +32,7 @@ export class VehicleTypesController {
   }
   // Update a vehicleType's details
   @UseGuards(JwtAuthGuard)
-  @Put('/update')
+  @Put('')
   async updateVehicleType(
     @Query('vehicleTypeID') vehicleTypeID: string,
     @Body() updateVehicleTypeDTO: UpdateVehicleTypeDTO,
@@ -72,5 +72,13 @@ export class VehicleTypesController {
       message: 'VehicleType has been created successfully',
       vehicleType,
     };
+  }
+
+  // Get VehicleTypeList
+  @UseGuards(JwtAuthGuard)
+  @Get('all')
+  async getVehicleTypeList() {
+    const vehicleTypes = await this.vehicleTypeService.getAll();
+    return vehicleTypes;
   }
 }

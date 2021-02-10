@@ -43,4 +43,9 @@ export class VehicleTypesService {
     if (!deletedUser) return null;
     return deletedUser;
   }
+  // get all vehicleType
+  async getAll(): Promise<VehicleType[]> {
+    const result = await this.vehicleTypeModel.find().exec();
+    return result;
+  }
 }
