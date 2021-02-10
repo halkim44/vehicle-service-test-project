@@ -1,15 +1,13 @@
 import { Document } from 'mongoose';
-import { VehicleType } from '../vehicle-types/vehicle-type.interface';
-import { User } from '../users/user.schema';
 
 export interface Vehicle extends Document {
   model_name: string;
 
   number_plate: string;
 
-  owner: User;
+  owner: string;
 
-  alternate_drivers: User[];
+  alternate_drivers: string[];
 
-  type: VehicleType;
+  class: string;
 }

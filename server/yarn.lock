@@ -610,6 +610,11 @@
     "@types/jsonwebtoken" "8.5.0"
     jsonwebtoken "8.5.1"
 
+"@nestjs/mapped-types@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@nestjs/mapped-types/-/mapped-types-0.3.0.tgz#1dcf178c198e948c548ca803850e2eba639900d4"
+  integrity sha512-AdWVTOg3AhAEcVhPGgUJiLbLXb7L5Pe7vc20YQ0oOXP/KD/nJj0I3BcytVdBhzmgepol67BdivNUvo27Hx3Ndw==
+
 "@nestjs/mongoose@^7.2.3":
   version "7.2.3"
   resolved "https://registry.yarnpkg.com/@nestjs/mongoose/-/mongoose-7.2.3.tgz#641d83388ceba94f1566abe8e78a4dd3bd62753f"

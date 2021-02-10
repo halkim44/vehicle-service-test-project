@@ -30,10 +30,10 @@ export class UsersService {
   // Edit user details
   async updateUser(
     userID: string,
-    createUserDTO: UpdateUserDTO,
+    updateUserDTO: UpdateUserDTO,
   ): Promise<User> {
     const updatedUser = await this.userModel
-      .findByIdAndUpdate(userID, createUserDTO, { new: true })
+      .findByIdAndUpdate(userID, updateUserDTO, { new: true })
       .exec();
     return updatedUser;
   }

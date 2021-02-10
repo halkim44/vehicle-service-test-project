@@ -24,7 +24,7 @@ export class Vehicle {
     type: mongooseSchema.Types.ObjectId,
     ref: 'VehicleType',
   })
-  type: VehicleType;
+  class: VehicleType;
 }
 
 export const VehicleSchema = SchemaFactory.createForClass(Vehicle);

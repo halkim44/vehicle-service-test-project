@@ -1,13 +1,11 @@
-import { Types } from 'mongoose';
-
 export class CreateVehicleDTO {
   model_name: string;
 
   number_plate: string;
 
-  owner: Types.ObjectId;
+  owner: string;
 
-  alternate_drivers: Types.ObjectId[];
+  alternate_drivers: string[];
 
-  type: Types.ObjectId;
+  class: string;
 }

@@ -8,8 +8,7 @@ import { BranchesModule } from './branches/branches.module';
 import { BookingsModule } from './bookings/bookings.module';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
-import { APP_GUARD } from '@nestjs/core';
-import { JwtAuthGuard } from './auth/jwt-auth.guard';
+import { VehicleTypesModule } from './vehicle-types/vehicle-types.module';
 
 @Module({
   imports: [
@@ -20,6 +19,7 @@ import { JwtAuthGuard } from './auth/jwt-auth.guard';
     BranchesModule,
     BookingsModule,
     AuthModule,
+    VehicleTypesModule,
   ],
   controllers: [AppController],
   providers: [

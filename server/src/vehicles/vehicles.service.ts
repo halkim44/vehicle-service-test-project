@@ -32,13 +32,16 @@ export class VehiclesService {
     if (!deletedVehicle) return null;
     return deletedVehicle;
   }
-  // async updateVehicle(
-  //   vehicleID: string,
-  //   updateVehicleDTO: CreateVehicleDTO,
-  // ): Promise<Vehicle> {
-  //   const updatedVehicle = await this.vehicleModel
-  //     .findByIdAndUpdate(vehicleID, updateVehicleDTO, { new: true })
-  //     .exec();
-  //   return updatedVehicle;
-  // }
+
+  // Edit user details
+  async updateVehicle(
+    vehicleID: string,
+    updateVehicleDTO: UpdateVehicleDTO,
+  ): Promise<any> {
+    const updatedVehicle = await this.vehicleModel
+      .findByIdAndUpdate(vehicleID, updateVehicleDTO, { new: true })
+      .exec();
+    return updatedVehicle;
+  }
 }
+console.log(UpdateVehicleDTO);
