@@ -23,14 +23,21 @@ export class Booking {
   ])
   technicians_assigned: User[];
 
-  @Prop()
+  @Prop({
+    required: true,
+    type: mongooseSchema.Types.ObjectId,
+    ref: 'User',
+  })
+  made_by: User;
+
+  @Prop({ type: Date })
   service_started: Date;
 
-  @Prop()
+  @Prop({ type: Date })
   service_ended: Date;
 
-  @Prop({ type: Date, default: Date.now })
-  date: Date;
+  @Prop({ required: true, type: Date })
+  due_date: Date;
 
   @Prop({
     type: mongooseSchema.Types.ObjectId,

@@ -5,10 +5,10 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { VehiclesModule } from './vehicles/vehicles.module';
 import { BranchesModule } from './branches/branches.module';
-import { BookingsModule } from './bookings/bookings.module';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { VehicleTypesModule } from './vehicle-types/vehicle-types.module';
+import { BookingsModule } from './bookings/bookings.module';
 
 @Module({
   imports: [

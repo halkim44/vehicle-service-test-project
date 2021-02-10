@@ -1,17 +1,17 @@
 import { Document } from 'mongoose';
-import { Vehicle } from '../vehicles/vehicle.interface';
-import { Branch } from '../branches/branch.interface';
 
-export interface User extends Document {
-  vehicle: Vehicle;
+export interface Booking extends Document {
+  vehicle: string;
 
-  technicians_assigned: User[];
+  technicians_assigned: string[];
+
+  made_by: string;
 
   service_started: Date;
 
   service_ended: Date;
 
-  date: Date;
+  due_date: Date;
 
-  branch: Branch;
+  branch: string;
 }
