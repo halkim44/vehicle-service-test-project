@@ -19,8 +19,11 @@ export class BookingsService {
     private vehicleService: VehiclesService,
   ) {}
   // get a single Booking
-  async get(id: string): Promise<Booking> {
-    const result = await this.bookingModel.findById(id).exec();
+  async get(id: string): Promise<any> {
+    const result = await this.bookingModel
+      .findById(id)
+      .populate('vehicle technicians_assigned made_by branch')
+      .exec();
     return result;
   }
 
@@ -108,7 +111,7 @@ export class BookingsService {
     return BookedSlots;
   }
 
-  async getHistoryByUserId(id: string): Promise<Booking[]> {
+  async getHistoryByUserId(userId: string): Promise<Booking[]> {
     const bookedHistory = await this.bookingModel.aggregate([
       {
         $match: {
@@ -117,11 +120,26 @@ export class BookingsService {
               $date: Date.now(),
             },
           },
-          made_by: Types.ObjectId(id),
+          made_by: Types.ObjectId(userId),
         },
       },
     ]);
-
     return bookedHistory;
+  }
+  // get branch bookedSlots
+  async getBranchBookedSlots(branchId: string): Promise<Booking[]> {
+    const results = this.bookingModel.aggregate([
+      {
+        $match: {
+          due_date: {
+            $gt: {
+              $date: Date.now(),
+            },
+          },
+          branch: Types.ObjectId(branchId),
+        },
+      },
+    ]);
+    return results;
   }
 }

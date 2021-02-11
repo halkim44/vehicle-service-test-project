@@ -28,7 +28,7 @@ export class BranchesController {
   }
   // Update a branch's details
   @UseGuards(JwtAuthGuard)
-  @Put('')
+  @Put('update')
   async updateBranch(
     @Query('branchID') branchID: string,
     @Body() updateBranchDTO: UpdateBranchDTO,
@@ -62,5 +62,15 @@ export class BranchesController {
       message: 'Branch has been created successfully',
       branch,
     };
+  }
+  // Fetch a particular branch using ID
+  @UseGuards(JwtAuthGuard)
+  @Get('/booked-slots/:branchID')
+  async getBranchBookedSlots(
+    @Param('branchID') branchID: string,
+  ): Promise<any> {
+    const branch = await this.branchService.getBookedList(branchID);
+    if (!branch) throw new NotFoundException('Branch does not exist!');
+    return { branch };
   }
 }

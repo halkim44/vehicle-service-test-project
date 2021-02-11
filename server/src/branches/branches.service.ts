@@ -4,16 +4,22 @@ import { Model } from 'mongoose';
 import { Branch } from './branch.interface';
 import { CreateBranchDTO } from './create-branch.dto';
 import { UpdateBranchDTO } from './update-branch.dto';
+import { BookingsService } from '../bookings/bookings.service';
+import { Booking } from 'src/bookings/booking.interface';
 
 @Injectable()
 export class BranchesService {
   constructor(
     @InjectModel('Branch') private readonly branchModel: Model<Branch>,
+    private bookingsService: BookingsService,
   ) {}
 
   // get a single Branch
   async get(id: string): Promise<Branch> {
-    const result = await this.branchModel.findById(id).exec();
+    const result = await this.branchModel
+      .findById(id)
+      .populate('technicians')
+      .exec();
     return result;
   }
   // create a single Branch
@@ -33,5 +39,10 @@ export class BranchesService {
     const deletedUser = await this.branchModel.findByIdAndRemove(id).exec();
     if (!deletedUser) return null;
     return deletedUser;
+  }
+  async getBookedList(branchId: string): Promise<Booking[]> {
+    const results = this.bookingsService.getBranchBookedSlots(branchId);
+
+    return results;
   }
 }

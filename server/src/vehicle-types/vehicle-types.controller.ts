@@ -32,7 +32,7 @@ export class VehicleTypesController {
   }
   // Update a vehicleType's details
   @UseGuards(JwtAuthGuard)
-  @Put('')
+  @Put('update')
   async updateVehicleType(
     @Query('vehicleTypeID') vehicleTypeID: string,
     @Body() updateVehicleTypeDTO: UpdateVehicleTypeDTO,
