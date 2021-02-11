@@ -9,10 +9,10 @@ import { BookingsService } from './bookings.service';
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: 'Booking', schema: BookingSchema }]),
-    UsersModule,
     VehiclesModule,
   ],
   providers: [BookingsService],
   controllers: [BookingsController],
+  exports: [BookingsService],
 })
 export class BookingsModule {}

@@ -28,7 +28,7 @@ export class BookingsController {
   }
   // Update a booking's details
   @UseGuards(JwtAuthGuard)
-  @Put('')
+  @Put('update')
   async updateBooking(
     @Query('bookingID') bookingID: string,
     @Body() updateBookingDTO: UpdateBookingDTO,
@@ -60,7 +60,12 @@ export class BookingsController {
   @UseGuards(JwtAuthGuard)
   @Post('/create')
   async addBooking(@Body() createBookingDTO: CreateBookingDTO) {
-    const booking = await this.bookingService.create(createBookingDTO);
+    let booking;
+    try {
+      booking = await this.bookingService.create(createBookingDTO);
+    } catch (e) {
+      throw e;
+    }
     return {
       message: 'Booking has been created successfully',
       booking,

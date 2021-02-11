@@ -1,13 +1,18 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { Booking } from 'src/bookings/booking.interface';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { UpdateUserDTO } from './dto/update-user.dto';
 import { User } from './user.interface';
+import { BookingsService } from '../bookings/bookings.service';
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
+  constructor(
+    @InjectModel('User') private readonly userModel: Model<User>,
+    private bookingsService: BookingsService,
+  ) {}
 
   // Get a single user
   async getUser(userID: string): Promise<User> {
@@ -43,5 +48,15 @@ export class UsersService {
 
     if (!deletedUser) return null;
     return deletedUser;
+  }
+  async getBookedSlots(id: string): Promise<Booking[]> {
+    const results = this.bookingsService.getTechniciansBookedSlots(id);
+    if (!results) throw new NotFoundException('Not Found.');
+    return results;
+  }
+  async getServiceHistory(id: string): Promise<Booking[]> {
+    const results = this.bookingsService.getHistoryByUserId(id);
+    if (!results) throw new NotFoundException('Not Found.');
+    return results;
   }
 }

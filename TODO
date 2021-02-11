@@ -2,10 +2,10 @@
 List Of Features:
   ✔ customer are able to register vehicle by plate number @done(21-02-11 00:16)
   ✔ Alternative Drivers which are not the owner of the Vehicle @done(21-02-11 00:16)
-  ☐ Track Service History
-  ☐ Customer an alt driver are able to book for service
-  ☐ each vehicle are able to book once in a day
-  ☐ cannot book on the current day
+  ✔ Track Service History @done(21-02-11 23:49)
+  ✔ Customer an alt driver are able to book for service @done(21-02-11 23:49)
+  ✔ each vehicle are able to book once in a day @done(21-02-11 23:49)
+  ✔ cannot book on the current day @done(21-02-11 23:49)
   ✔ each branch has 10 available service slot to book each day @done(21-02-10 23:48)
   ✔ each branch has 10 technician to assign to each vehicle, able to service one vehicle per day @done(21-02-10 23:48)
   ✔ SUVs require two technicians @done(21-02-10 23:47)
@@ -16,3 +16,46 @@ List Of Features:
   ✔ vehicle is ready to drive @done(21-02-10 23:47)
   ✔ authentication in jwt @done(21-02-10 23:46)
 
+Vehicle:
+  ☐ .create
+  ☐ .update
+  ☐ .delete
+  ☐ .get
+User:
+  ☐ .update
+  ☐ .get
+  ☐ .findUser
+  ☐ .delete
+  ☐ .get: getTechniciansBookedList
+  - make sure user is technician
+  - get booking by aggregate
+  ☐ .get: serviceHistory
+
+Booking:
+  ☐ .create
+    - make sure user is owner or alt_drivers
+    - error User is not owner or alt driver of the vehicle
+  ☐ .get
+    - 
+  ☐ .update
+    - make sure user is owner or alt_drivers
+  ☐ .delete
+    - make sure user is owner or alt_drivers
+  ☐ .put:startService
+    - use id
+    
+    ☐ .put:endService
+    
+  ☐ 
+    
+Branch:
+  ☐ .create
+  ☐ .get
+  ☐ .update.delete
+  ☐ .getAvailableTechnicians
+  - get using date(year,m,d)
+  VehicleType:
+  ☐ .get(id)
+  ☐ .create
+  ☐ .update
+  ☐ .delete

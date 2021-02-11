@@ -9,6 +9,7 @@ import {
   Param,
   UseGuards,
 } from '@nestjs/common';
+import { Booking } from 'src/bookings/booking.interface';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { UpdateUserDTO } from './dto/update-user.dto';
 import { UsersService } from './users.service';
@@ -50,5 +51,31 @@ export class UsersController {
       message: 'User has been deleted',
       deleted: true,
     };
+  }
+
+  // get technicians bookedSlot
+  @UseGuards(JwtAuthGuard)
+  @Get('/:id/booked-slot')
+  async getBookedSlots(@Param('id') userId: string): Promise<Booking[]> {
+    let results;
+    try {
+      results = this.userService.getBookedSlots(userId);
+    } catch (e) {
+      throw e;
+    }
+    return results;
+  }
+
+  // get Service History
+  @UseGuards(JwtAuthGuard)
+  @Get('/:id/service-history')
+  async getServiceHistory(@Param('id') userId: string): Promise<Booking[]> {
+    let results;
+    try {
+      results = this.userService.getServiceHistory(userId);
+    } catch (e) {
+      throw e;
+    }
+    return results;
   }
 }
