@@ -8,20 +8,36 @@ import {
   Delete,
   Param,
   UseGuards,
+  Request,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { Booking } from 'src/bookings/booking.interface';
+import { Action } from 'src/casl/actions.enum';
+import { CaslAbilityFactory } from 'src/casl/casl-ability.factory';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { UpdateUserDTO } from './dto/update-user.dto';
 import { UsersService } from './users.service';
 
 @Controller('user')
 export class UsersController {
-  constructor(private userService: UsersService) {}
+  constructor(
+    private userService: UsersService,
+    private caslAbilityFactory: CaslAbilityFactory,
+  ) {}
 
   // Fetch a particular user using ID
   @UseGuards(JwtAuthGuard)
   @Get('/:userID')
-  async getUser(@Param('userID') userID: string): Promise<any> {
+  async getUser(@Param('userID') userID: string, @Request() req): Promise<any> {
+    console.log(req.user, 'hah');
+
+    const ability = this.caslAbilityFactory.createForUser(req.user);
+    console.log(ability.can(Action.Read, 'User'));
+
+    if (!ability.can(Action.Read, 'User')) {
+      // "user" has read access to everything
+      throw new UnauthorizedException('HaaaS');
+    }
     const user = await this.userService.getUser(userID);
     if (!user) throw new NotFoundException('User does not exist!');
     return { user };

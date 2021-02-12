@@ -9,6 +9,8 @@ import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { VehicleTypesModule } from './vehicle-types/vehicle-types.module';
 import { BookingsModule } from './bookings/bookings.module';
+import { CaslModule } from './casl/casl.module';
+import { PassportModule } from '@nestjs/passport';
 
 @Module({
   imports: [
@@ -20,6 +22,8 @@ import { BookingsModule } from './bookings/bookings.module';
     BookingsModule,
     AuthModule,
     VehicleTypesModule,
+    CaslModule,
+    PassportModule.register({ session: true }),
   ],
   controllers: [AppController],
   providers: [

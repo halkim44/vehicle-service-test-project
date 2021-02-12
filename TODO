@@ -59,3 +59,35 @@ Branch:
   ☐ .create
   ☐ .update
   ☐ .delete
+
+
+Implementing Authorizations
+
+User:
+  ☐ update: only self is premited
+  ☐ delete: only self is premited
+  ☐ get: jwt user is permited
+
+Vehicle:
+  ☐ create: all user jwt is permited
+  ☐ update: only owner and alt driver is premited
+  ☐ delete: only owner and alt driver is premited
+  ☐ get: jwt user is permited
+
+Vehicle-types:
+  ☐ create: only admin user is permitted
+  ☐ update: only admin is premited
+  ☐ delete: only admin is premited
+  ☐ get: jwt user is permited
+
+Branch:
+  ☐ create: only admin user is permitted
+  ☐ update: only admin is premited
+  ☐ delete: only admin is premited
+  ☐ get: jwt user is permited
+
+Bookings:
+  ☐ create: only owner and alt drivers is permitted for the specified vehicle
+  ☐ update: only owner and alt drivers is permitted for the specified vehicle
+  ☐ delete: only owner and alt drivers is permitted for the specified vehicle
+  ☐ get: jwt user is permited
